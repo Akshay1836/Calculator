@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import Button from './Button-op';
 import Digit from './Digit';
+import Display from './Display';
 
 function Hero() {
 
   const [result,setResult]=useState('')
+  const [copy,setCopy]=useState('')
 
   const findResult=(val)=>{
     const find=result+val;
@@ -15,17 +17,19 @@ function Hero() {
   const calculate=()=>{
    try{
     const finalResult=eval(result);
-    setResult(finalResult)
+    setCopy(finalResult);
+    setResult(result)
    }
    catch(error)
    {
-    alert('error occured');
+    alert('Invalid Syntax');
     setResult('')
    }
   }
 
   const clear=()=>{
     setResult('')
+    setCopy('')
   }
 
   const negative=()=>{
@@ -37,14 +41,14 @@ function Hero() {
     const l=result.length;
     const val=result.slice(0,l-1);
     setResult(val)
-    
   }
 
   const percentage=()=>{
     try
     {
       const per=result/100;
-      setResult(per);
+      setResult('');
+      setCopy(per)
     }
     catch
     {
@@ -53,23 +57,13 @@ function Hero() {
     
   }
   return (
-    <div className='w-3/12 h-screen mt-0  p-2 mb-0 bg-font_black '>
-        <div className='w-full h-1/4 rounded-md my-2 p-2 border-solid border-white border-2'>
-          <div className='w-full h-full rounded-xl flex justify-end items-end text-xl font-bold text-font_white pb-4 '>
-            <div>
-              
-            </div>
-           {
-            result
-           }
-          </div>
-
-        </div>
-        <div className='grid grid-rows-5 grid-cols-4 w-full h-2/3 bg-font_black rounded-md'>
-                <div className='bg-clr_blue  my-2 mx-4 rounded-md  w-12 h-12 font-bold text-2xl font-serif p-2 cursor-pointer flex items-center justify-center' onClick={()=>{clear()}}><p className='text-center text-font_white'>AC</p></div>
-                <div className='bg-clr_blue  my-2 mx-4 rounded-md  w-12 h-12 font-bold text-2xl font-serif p-2 cursor-pointer flex items-center justify-center' onClick={()=>{percentage()}}><p className='text-center text-font_white'>%</p></div>
+    <div className='sm:w-2/3 sm:h-2/3 lg:w-3/12  mt-8 mb-10 px-6 py-6 bg-font_black'>
+       <Display result={result} copy={copy} findResult={findResult}/>
+        <div className='grid grid-rows-5 grid-cols-4 w-full h-2/3 bg-font_black rounded-md pl-2'>
+                <div className='bg-clr_blue w-16 h-16 my-2 mx-2 md:w-24 md:h-24 md:text-3xl lg:w-12 lg:h-12 rounded-md font-bold text-xl font-serif p-2 cursor-pointer flex items-center justify-center ' onClick={()=>{clear()}}><p className='text-center text-font_white'>AC</p></div>
+                <div className='bg-clr_blue w-16 h-16 my-2 mx-2 md:w-24 md:h-24 md:text-3xl lg:w-12 lg:h-12 rounded-md font-bold text-xl font-serif p-2 cursor-pointer flex items-center justify-center' onClick={()=>{percentage()}}><p className='text-center text-font_white'>%</p></div>
                 
-                <div className='bg-clr_blue  my-2 mx-4 rounded-md  w-12 h-12 font-bold text-2xl font-serif p-2 cursor-pointer flex items-center justify-center' onClick={()=>{negative()}}><p className='text-center text-font_white'>+/-</p></div>
+                <div className='bg-clr_blue w-16 h-16 my-2 mx-2 md:w-24 md:h-24 md:text-3xl lg:w-12 lg:h-12 rounded-md font-bold text-xl font-serif p-2 cursor-pointer flex items-center justify-center ' onClick={()=>{negative()}}><p className='text-center text-font_white'>+/-</p></div>
                 
                 <Button findResult={findResult} result={result} setResult={setResult} calculate={calculate} btn_value={'/'}/>
 
@@ -94,8 +88,9 @@ function Hero() {
                 <Digit findResult={findResult} result={result} setResult={setResult} calculate={calculate} btn_value={'.'}/>
                 <Digit findResult={findResult} result={result} setResult={setResult} calculate={calculate} btn_value={'0'}/>
                 
-                <div className='bg-clr_blue  my-2 mx-4 rounded-md w-12 h-12 font-bold text-2xl font-serif p-2 cursor-pointer flex items-center justify-center' onClick={()=>{back()}}><p className='text-center text-font_white'><i class="fa-solid fa-delete-left"></i></p></div>
-                <div className='bg-clr_blue  my-2 mx-4 rounded-md w-12 h-12  font-bold text-2xl font-serif p-2 cursor-pointer flex items-center justify-center' onClick={()=>{calculate()}}><p className='text-center text-font_white'>=</p></div>
+                <div className='bg-clr_blue w-16 h-16 my-2 mx-2 md:w-24 md:h-24 md:text-3xl lg:w-12 lg:h-12  rounded-md font-bold text-xl font-serif p-2 cursor-pointer flex items-center justify-center ' onClick={()=>{back()}}><p className='text-center text-font_white'><i class="fa-solid fa-delete-left"></i></p></div>
+                <div className='bg-clr_blue w-16 h-16 my-2 mx-2  md:w-24 md:h-24 md:text-3xl rounded-md lg:w-12 lg:h-12 font-bold text-xl font-serif p-2 cursor-pointer flex items-center justify-center ' onClick={()=>{calculate()}}><p className='text-center text-font_white'>=</p></div>
+                
                 
 
                 
