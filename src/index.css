@@ -10,6 +10,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: theme(colors.background_clr);
+    background-color: theme("colors.background_clr");
   }
 }

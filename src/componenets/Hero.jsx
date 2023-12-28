@@ -57,7 +57,7 @@ function Hero() {
     
   }
   return (
-    <div className='sm:w-2/3 sm:h-2/3 lg:w-3/12  mt-8 mb-10 px-6 py-6 bg-font_black'>
+    <div className='sm:w-2/3 sm:h-2/3 lg:w-3/12  mt-8 mb-10 px-6 py-6 rounded-xl bg-font_black'>
        <Display result={result} copy={copy} findResult={findResult}/>
         <div className='grid grid-rows-5 grid-cols-4 w-full h-2/3 bg-font_black rounded-md pl-2'>
                 <div className='bg-clr_blue w-16 h-16 my-2 mx-2 md:w-24 md:h-24 md:text-3xl lg:w-12 lg:h-12 rounded-md font-bold text-xl font-serif p-2 cursor-pointer flex items-center justify-center ' onClick={()=>{clear()}}><p className='text-center text-font_white'>AC</p></div>
