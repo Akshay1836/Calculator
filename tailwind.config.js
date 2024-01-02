@@ -9,7 +9,7 @@ export default {
       'sm':'530px',
       'md':'800px',
       'lg':'1100px',
-      'xl':'1300px',
+      'xl':'1600px',
       
     },
     extend: {
